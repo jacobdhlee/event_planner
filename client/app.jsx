@@ -8,7 +8,6 @@ class Event extends React.Component {
       <div>
         <h1>Hello Event</h1>
         <h1>check this is work</h1>
-        <p>fucking div</p>
       </div>
     )
   }
