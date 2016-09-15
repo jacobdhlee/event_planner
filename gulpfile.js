@@ -27,3 +27,10 @@ gulp.task('styles', () => {
       }))
       .pipe(gulp.dest('./client/css'))
 })
+
+gulp.task('lint', () => {
+  return gulp.src(['client/component/**/*.jsx', '!node_modules/**'])
+             .pipe(eslint())
+             .pipe(eslint.format())
+             .pipe(eslint.failAfterError());
+})

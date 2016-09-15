@@ -32,17 +32,17 @@ var UserSchema = new Schema({
   }
 })
 
-UserSchema.pre('save', (next) => {
-  let user = this;
+UserSchema.pre('save', function(next) {
+  var user = this;
   if( !user.isModified('password')) {
     return next();
   }
 
-  bcrypt.genSaly(saltRound, (err, salt)=>{
+  bcrypt.genSalt(saltRound, function(err, salt){
     if(err) {
       next(err)
     }
-    bcrypt.hash(user.password, salt, (err, hash) => {
+    bcrypt.hash(user.password, salt, function(err, hash) {
       if(err) {
         next(err)
       }
@@ -52,7 +52,7 @@ UserSchema.pre('save', (next) => {
   })
 })
 
-UserSchema.methods.comparedPassword (password) => {
+UserSchema.methods.comparedPassword = function (password) {
   var savedPassword = this.password;
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, savedPassword, (err, isMatch) => {
@@ -64,7 +64,7 @@ UserSchema.methods.comparedPassword (password) => {
   })
 }
 
-module.export = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', UserSchema)
 
 
 
