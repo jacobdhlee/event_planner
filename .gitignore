@@ -2,4 +2,4 @@ node_modules
 npm-debug.log
 client/dist
 .DS_Store
-server/config
+config
