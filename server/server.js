@@ -20,15 +20,15 @@ mongoose.connect(auth.db, (err) => {
 });
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(express.static('client'));
 app.use(passport.initialize())
-app.use(passport.session());
+app.use(passport.session())
 app.use(flash());
 
 routes(app, express);
+
 
 app.listen(3000, () => {
   console.log('listening port 3000');
